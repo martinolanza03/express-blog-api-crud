@@ -5,7 +5,10 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    res.send(`Dettagli del posts ${req.params.id}`);
+    const requestId = parseInt(req.params.id);
+    let resultSearch = posts.find((element) => element.id === requestId);
+
+    res.json(resultSearch);
 }
 function create(req, res) {
     res.send(`Creare un nuovo elemento`);
