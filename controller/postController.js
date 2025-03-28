@@ -7,7 +7,7 @@ function index(req, res) {
 function show(req, res) {
     res.send(`Dettagli del posts ${req.params.id}`);
 }
-function store(req, res) {
+function create(req, res) {
     res.send(`Creare un nuovo elemento`);
 }
 function update(req, res) {
@@ -25,4 +25,4 @@ function destroy(req, res) {
 
 
 // export all function
-module.exports = { index, show, store, update, destroy }
+module.exports = { index, show, create, update, destroy }
