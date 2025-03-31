@@ -6,6 +6,9 @@ const postsRouter = require('./routers/postRouter.js');
 //Static asset
 app.use(express.static('public'));
 
+//Register the body-parser
+app.use(express.json());
+
 //Call routes in postsRouter.js
 app.use('/posts', postsRouter);
 
