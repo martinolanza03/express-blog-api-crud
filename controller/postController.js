@@ -20,8 +20,20 @@ function show(req, res) {
 }
 
 function create(req, res) {
-    console.log(req.body);
-    res.send(`Creare un nuovo elemento`);
+    const newId = posts[posts.length - 1].id + 1;
+
+    const newPosts = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    posts.push(newPosts);
+
+    res.status(201);
+    res.json(newPosts);
 }
 
 function update(req, res) {
