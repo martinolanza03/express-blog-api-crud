@@ -8,6 +8,15 @@ function show(req, res) {
     const requestId = parseInt(req.params.id);
     let resultSearch = posts.find((element) => element.id === requestId);
 
+    if (!resultSearch) {
+        res.status(404);
+        return res.json({
+            error: 'Not Found',
+            message: 'Post non trovato'
+        });
+    }
+
+
     res.json(resultSearch);
 }
 
@@ -28,6 +37,14 @@ function destroy(req, res) {
     let resultSearch = posts.find((element) => element.id === requestId);
 
     posts.splice(posts.indexOf(resultSearch), 1);
+
+    if (!resultSearch) {
+        res.status(404);
+        return res.json({
+            error: 'Not Found',
+            message: 'Post non trovato'
+        });
+    }
 
     console.log(posts);
 
