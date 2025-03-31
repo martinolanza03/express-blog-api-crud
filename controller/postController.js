@@ -16,11 +16,11 @@ function show(req, res) {
         });
     }
 
-
     res.json(resultSearch);
 }
 
 function create(req, res) {
+    console.log(req.body);
     res.send(`Creare un nuovo elemento`);
 }
 
