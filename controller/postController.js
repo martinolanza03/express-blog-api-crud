@@ -37,7 +37,25 @@ function create(req, res) {
 }
 
 function update(req, res) {
-    res.send(`Modifica integrale dell'elemento con id ${req.params.id}`);
+    const requestId = parseInt(req.params.id);
+    let resultSearch = posts.find((element) => element.id === requestId);
+
+    if (!resultSearch) {
+        res.status(404);
+        return res.json({
+            error: 'Not Found',
+            message: 'Post non trovato'
+        });
+    }
+
+    resultSearch.title = req.body.title;
+    resultSearch.content = req.body.content;
+    resultSearch.image = req.body.image;
+    resultSearch.tags = req.body.tags;
+
+    console.log(posts);
+
+    res.json(resultSearch);
 }
 
 function patch(req, res) {
