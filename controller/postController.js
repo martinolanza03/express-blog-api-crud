@@ -59,7 +59,25 @@ function update(req, res) {
 }
 
 function patch(req, res) {
-    res.send(`Modifica parziale dell'elemento con id ${req.params.id}`);
+    const requestId = parseInt(req.params.id);
+    let resultSearch = posts.find((element) => element.id === requestId);
+
+    if (!resultSearch) {
+        res.status(404);
+        return res.json({
+            error: 'Not Found',
+            message: 'Post non trovato'
+        });
+    }
+
+    if (req.body.title !== undefined) resultSearch.title = req.body.title;
+    if (req.body.content !== undefined) resultSearch.content = req.body.content;
+    if (req.body.image !== undefined) resultSearch.image = req.body.image;
+    if (req.body.tags !== undefined) resultSearch.tags = req.body.tags;
+
+    console.log(posts);
+
+    res.json(resultSearch);
 }
 
 function destroy(req, res) {
